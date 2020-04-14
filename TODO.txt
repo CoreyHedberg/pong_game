@@ -1,0 +1,2 @@
+TODO : Add "Player" and "Computer" words to the screen.
+  //developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
