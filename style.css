@@ -3,14 +3,21 @@
   src: url("media/pixelboy.ttf");
 }
 
+@font-face {
+  font-family: "PressStart";
+  src: url("media/PressStart.ttf");
+}
+
 body {
-  background-color: #aab8aa;
-  font-family: "Consolas";
+  background-color: #808080;
+  font-family: "PressStart";
+  font-size: 28px;
+  text-align: center;
 }
 
 canvas {
   margin: 0 auto;
   display: block;
-  /* border-radius: 10px; */
+  box-shadow: 0px 0px 8px 4px #ffffac;
   /* cursor: none; */
 }
