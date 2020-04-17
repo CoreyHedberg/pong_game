@@ -32,7 +32,7 @@ window.onload = () => {
   });
 };
 
-function restartGame(e) {
+function restartGame() {
   if (showingWinScreen) {
     playerScore = 0;
     computerScore = 0;
@@ -111,27 +111,28 @@ function moveEverything() {
 
 function drawNet() {
   for (let i = 0; i < canvas.height; i += 35) {
-    colorRect(canvas.width / 2 - 1, i, 2, 20, "white");
+    colorRect(canvas.width / 2 - 1, i, 2, 20, "#FFFFFF");
   }
 }
 function drawEverything() {
   // Draws the black canvas
-  colorRect(0, 0, canvas.width, canvas.height, "black");
+  colorRect(0, 0, canvas.width / 2, canvas.height, "#3333FF");
+  colorRect(canvas.width / 2, 0, canvas.width / 2, canvas.height, "#1A1A82");
 
   // Displays who won message
   if (showingWinScreen) {
     if (playerScore >= WINNING_SCORE) {
-      canvasContext.fillStyle = "slategray";
+      canvasContext.fillStyle = "#FFFFFF";
       canvasContext.font = "18px PressStart";
       canvasContext.fillText(`Congratulations, you won!`, 190, 180);
     } else if (computerScore >= WINNING_SCORE) {
-      canvasContext.fillStyle = "slategray";
+      canvasContext.fillStyle = "#FFFFFF";
       canvasContext.font = "18px PressStart";
       canvasContext.fillText(`The computer won.`, 253, 180);
     }
 
     // Play again message
-    canvasContext.fillStyle = "slategray";
+    canvasContext.fillStyle = "#FFFFFF";
     canvasContext.font = "18px PressStart";
     canvasContext.fillText("Click to play again", 235, 375);
     return;
@@ -152,7 +153,7 @@ function drawEverything() {
   );
 
   // Displays the score on the screen
-  canvasContext.fillStyle = "slategray";
+  canvasContext.fillStyle = "#FFFFFF";
   canvasContext.font = "32px Pixelboy";
   canvasContext.fillText(playerScore, 280, 100);
   canvasContext.fillText(computerScore, canvas.width - 280, 100);
