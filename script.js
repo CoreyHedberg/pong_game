@@ -8,8 +8,7 @@ let leftPaddleY = 250;
 let rightPaddleY = 250;
 let playerScore = 0;
 let computerScore = 0;
-// TODO: Reset winning score to 8 when completed
-const WINNING_SCORE = 1;
+const WINNING_SCORE = 8;
 let showingWinScreen = false;
 const PADDLE_HEIGHT = 100;
 const PADDLE_THICKNESS = 10;
@@ -25,11 +24,21 @@ window.onload = () => {
     moveEverything();
   }, 1000 / framesPerSecond);
 
+  canvas.addEventListener("mousedown", restartGame);
+
   canvas.addEventListener("mousemove", (e) => {
     let mousePosition = calculateMousePosition(e);
     leftPaddleY = mousePosition.y - PADDLE_HEIGHT / 2;
   });
 };
+
+function restartGame(e) {
+  if (showingWinScreen) {
+    playerScore = 0;
+    computerScore = 0;
+    showingWinScreen = false;
+  }
+}
 
 function calculateMousePosition(e) {
   let rect = canvas.getBoundingClientRect();
@@ -44,8 +53,6 @@ function calculateMousePosition(e) {
 
 function ballReset() {
   if (playerScore >= WINNING_SCORE || computerScore >= WINNING_SCORE) {
-    playerScore = 0;
-    computerScore = 0;
     showingWinScreen = true;
   }
   ballSpeedX = -ballSpeedX;
@@ -102,22 +109,40 @@ function moveEverything() {
   }
 }
 
+function drawNet() {
+  for (let i = 0; i < canvas.height; i += 35) {
+    colorRect(canvas.width / 2 - 1, i, 2, 20, "white");
+  }
+}
 function drawEverything() {
-  // draws the black canvas
+  // Draws the black canvas
   colorRect(0, 0, canvas.width, canvas.height, "black");
 
+  // Displays who won message
   if (showingWinScreen) {
+    if (playerScore >= WINNING_SCORE) {
+      canvasContext.fillStyle = "slategray";
+      canvasContext.font = "18px PressStart";
+      canvasContext.fillText(`Congratulations, you won!`, 190, 180);
+    } else if (computerScore >= WINNING_SCORE) {
+      canvasContext.fillStyle = "slategray";
+      canvasContext.font = "18px PressStart";
+      canvasContext.fillText(`The computer won.`, 253, 180);
+    }
+
+    // Play again message
     canvasContext.fillStyle = "slategray";
     canvasContext.font = "18px PressStart";
-    // TODO: Use the template literals to indicate which player won the game.
-    canvasContext.fillText("Click to play again", 235, 250);
+    canvasContext.fillText("Click to play again", 235, 375);
     return;
   }
 
-  // left player paddle
+  drawNet();
+
+  // Left player paddle
   colorRect(0, leftPaddleY, PADDLE_THICKNESS, PADDLE_HEIGHT, "white");
 
-  // right player paddle
+  // Right player paddle
   colorRect(
     canvas.width - PADDLE_THICKNESS,
     rightPaddleY,
@@ -126,7 +151,7 @@ function drawEverything() {
     "white"
   );
 
-  // displays the score on the screen
+  // Displays the score on the screen
   canvasContext.fillStyle = "slategray";
   canvasContext.font = "32px Pixelboy";
   canvasContext.fillText(playerScore, 280, 100);
