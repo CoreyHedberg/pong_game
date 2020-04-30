@@ -115,7 +115,7 @@ function drawNet() {
   }
 }
 function drawEverything() {
-  // Draws the black canvas
+  // Draws the canvas
   colorRect(0, 0, canvas.width / 2, canvas.height, "#3333FF");
   colorRect(canvas.width / 2, 0, canvas.width / 2, canvas.height, "#1A1A82");
 
