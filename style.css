@@ -1,11 +1,11 @@
 @font-face {
   font-family: "Pixelboy";
-  src: url("media/pixelboy.ttf");
+  src: url("fonts/pixelboy.ttf");
 }
 
 @font-face {
   font-family: "PressStart";
-  src: url("media/PressStart.ttf");
+  src: url("fonts/PressStart.ttf");
 }
 
 body {
