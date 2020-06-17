@@ -2,7 +2,7 @@
 
 Play the classic paddle game.
 
-Click [here](https://coreyhedberg.github.io/snake_game/) to take on the computer.
+Click [here](https://coreyhedberg.github.io/pong_game/) to take on the computer.
 
 ## Languages Used
 
